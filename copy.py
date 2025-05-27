@@ -33,7 +33,7 @@ def process_chunk(args):
         dna = dna_reverse(dna)
     for i in range(start, end):
         hs = 0
-        for j in range(i + 29, dna_len):
+        for j in range(i, dna_len):
             hs = (hs * 5 + dna2num(dna[j])) % MOD
             if hs not in local_map:
                 if reverse:
@@ -77,7 +77,7 @@ def search(query, ref_map):
     
     for start in tqdm(range(query_len - 1, -1, -1), desc="Searching sequences", file=sys.stderr):
         hs = 0
-        for end in range(start + 29, query_len):
+        for end in range(start, query_len):
             hs = (hs * 5 + query_nums[end]) % MOD
             if hs in ref_map:
                 ref_seq = ref_map[hs]
